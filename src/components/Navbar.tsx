@@ -1,9 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { User, Gift, Wallet, Menu } from "lucide-react";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <nav className="bg-card/80 backdrop-blur-sm border-b border-border/50 fixed w-full z-50">
@@ -11,22 +17,42 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <span className="text-2xl font-bold text-primary glow-text">CSGO<span className="text-white">Кейсы</span></span>
+              <Link to="/">
+                <span className="text-2xl font-bold text-primary glow-text">CSGO<span className="text-white">Кейсы</span></span>
+              </Link>
             </div>
             <div className="hidden md:block ml-10">
               <div className="flex items-center space-x-4">
-                <a href="#" className="text-white hover:text-primary px-3 py-2 rounded-md font-medium transition-colors">
+                <Link 
+                  to="/" 
+                  className={`${isActive('/') ? 'text-primary' : 'text-white'} hover:text-primary px-3 py-2 rounded-md font-medium transition-colors`}
+                >
                   Главная
-                </a>
-                <a href="#" className="text-white hover:text-primary px-3 py-2 rounded-md font-medium transition-colors">
+                </Link>
+                <Link 
+                  to="/cases" 
+                  className={`${isActive('/cases') ? 'text-primary' : 'text-white'} hover:text-primary px-3 py-2 rounded-md font-medium transition-colors`}
+                >
                   Кейсы
-                </a>
-                <a href="#" className="text-white hover:text-primary px-3 py-2 rounded-md font-medium transition-colors">
+                </Link>
+                <Link 
+                  to="/upgrades" 
+                  className={`${isActive('/upgrades') ? 'text-primary' : 'text-white'} hover:text-primary px-3 py-2 rounded-md font-medium transition-colors`}
+                >
+                  Апгрейды
+                </Link>
+                <Link 
+                  to="/updates" 
+                  className={`${isActive('/updates') ? 'text-primary' : 'text-white'} hover:text-primary px-3 py-2 rounded-md font-medium transition-colors`}
+                >
                   Обновления
-                </a>
-                <a href="#" className="text-white hover:text-primary px-3 py-2 rounded-md font-medium transition-colors">
+                </Link>
+                <Link 
+                  to="/faq" 
+                  className={`${isActive('/faq') ? 'text-primary' : 'text-white'} hover:text-primary px-3 py-2 rounded-md font-medium transition-colors`}
+                >
                   F.A.Q
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -58,18 +84,41 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-card/95 backdrop-blur-md border-b border-border/50">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" className="text-white hover:text-primary block px-3 py-2 rounded-md font-medium">
+            <Link 
+              to="/" 
+              className={`${isActive('/') ? 'text-primary' : 'text-white'} hover:text-primary block px-3 py-2 rounded-md font-medium`}
+              onClick={() => setIsMenuOpen(false)}
+            >
               Главная
-            </a>
-            <a href="#" className="text-white hover:text-primary block px-3 py-2 rounded-md font-medium">
+            </Link>
+            <Link 
+              to="/cases" 
+              className={`${isActive('/cases') ? 'text-primary' : 'text-white'} hover:text-primary block px-3 py-2 rounded-md font-medium`}
+              onClick={() => setIsMenuOpen(false)}
+            >
               Кейсы
-            </a>
-            <a href="#" className="text-white hover:text-primary block px-3 py-2 rounded-md font-medium">
+            </Link>
+            <Link 
+              to="/upgrades" 
+              className={`${isActive('/upgrades') ? 'text-primary' : 'text-white'} hover:text-primary block px-3 py-2 rounded-md font-medium`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Апгрейды
+            </Link>
+            <Link 
+              to="/updates" 
+              className={`${isActive('/updates') ? 'text-primary' : 'text-white'} hover:text-primary block px-3 py-2 rounded-md font-medium`}
+              onClick={() => setIsMenuOpen(false)}
+            >
               Обновления
-            </a>
-            <a href="#" className="text-white hover:text-primary block px-3 py-2 rounded-md font-medium">
+            </Link>
+            <Link 
+              to="/faq" 
+              className={`${isActive('/faq') ? 'text-primary' : 'text-white'} hover:text-primary block px-3 py-2 rounded-md font-medium`}
+              onClick={() => setIsMenuOpen(false)}
+            >
               F.A.Q
-            </a>
+            </Link>
             <div className="pt-4 flex flex-col gap-2">
               <Button variant="outline" className="border-primary/50 w-full justify-start">
                 <Wallet className="h-4 w-4 mr-2" />
