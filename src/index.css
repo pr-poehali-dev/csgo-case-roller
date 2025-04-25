@@ -4,58 +4,73 @@
  
 @layer base {
   :root {
-    --background: 224 71% 4%;
-    --foreground: 210 20% 98%;
-    --card: 224 71% 4%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71% 4%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 217 57% 51%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 263 70% 50%;
+    --background: 225 10% 8%;
+    --foreground: 210 40% 98%;
+    
+    --card: 224 10% 10%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 224 10% 10%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 267 75% 67%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 187 85% 63%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    --accent: 267 75% 67%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 240 5% 25%;
+    --input: 240 5% 25%;
+    --ring: 267 75% 67%;
+    
     --radius: 0.5rem;
   }
-}
  
-@layer base {
-  * {
-    @apply border-border;
+  .dark {
+    --background: 225 10% 8%;
+    --foreground: 210 40% 98%;
+    
+    --card: 224 10% 10%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 224 10% 10%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 267 75% 67%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 187 85% 63%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    
+    --accent: 267 75% 67%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 240 5% 25%;
+    --input: 240 5% 25%;
+    --ring: 267 75% 67%;
   }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
 }
 
-/* Custom background images */
-.bg-csgo {
-  background-image: url('https://source.unsplash.com/random/1920x1080/?csgo,gaming,dark');
-  background-size: cover;
-  background-position: center;
+/* -------------- Custom Animations -------------- */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
-.bg-upgrade-hero {
-  background-image: url('https://source.unsplash.com/random/1920x1080/?csgo,upgrade,knife');
-  background-size: cover;
-  background-position: center;
-}
-
-/* Glow effects */
-.glow-text {
-  text-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3), 0 0 30px rgba(139, 92, 246, 0.2);
-}
-
-/* Animations */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -68,20 +83,91 @@
   }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.animate-case-open {
+  animation: caseOpen 2s forwards;
 }
 
-/* Scroll bar styling */
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
+@keyframes caseOpen {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
 }
 
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
+.case-slider-animate {
+  animation-timing-function: cubic-bezier(0.1, 0.7, 0.1, 1);
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(139, 92, 246, 0.5);
-  border-radius: 20px;
+@keyframes case-spin {
+  0% {
+    transform: translateX(0);
+  }
+  80% {
+    transform: translateX(calc(-92.5% + 20px));
+  }
+  90% {
+    transform: translateX(calc(-92.5% - 40px));
+  }
+  100% {
+    transform: translateX(calc(-92.5%));
+  }
+}
+
+.ease-case-spin {
+  animation-timing-function: cubic-bezier(0.1, 0.7, 0.1, 1);
+}
+
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+/* -------------- Special Effects -------------- */
+.glow-text {
+  text-shadow: 0 0 10px rgba(155, 135, 245, 0.5),
+               0 0 20px rgba(155, 135, 245, 0.3),
+               0 0 30px rgba(155, 135, 245, 0.1);
+}
+
+/* Background for hero section */
+.bg-csgo {
+  background-image: url('https://source.unsplash.com/random/1920x1080/?csgo,gaming,dark');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

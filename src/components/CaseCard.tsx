@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export interface WeaponSkin {
   name: string;
   skin: string;
   rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
   image: string;
+  price?: number;
 }
 
 export interface Case {
@@ -17,7 +19,7 @@ export interface Case {
 
 interface CaseCardProps {
   caseItem: Case;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const getRarityColor = (rarity: string) => {
@@ -33,8 +35,9 @@ const getRarityColor = (rarity: string) => {
 
 const CaseCard = ({ caseItem, onClick }: CaseCardProps) => {
   return (
-    <div 
-      className="case-card bg-card rounded-lg overflow-hidden flex flex-col"
+    <Link 
+      to={`/case/${caseItem.id}`}
+      className="case-card bg-card rounded-lg overflow-hidden flex flex-col hover-scale block"
       onClick={onClick}
     >
       <div className="relative p-4">
@@ -64,7 +67,7 @@ const CaseCard = ({ caseItem, onClick }: CaseCardProps) => {
           Открыть кейс
         </Button>
       </div>
-    </div>
+    </Link>
   );
 };
 
